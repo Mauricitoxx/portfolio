@@ -3,59 +3,63 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, BookOpen, Briefcase, Code, MapPin } from 'lucide-react';
 
-const timelineData = [
-  {
-    title: 'Inicio Académico',
-    institution: 'Ingeniería en Sistemas (UTN)',
-    date: '2022',
-    modality: '— Presencial',
-    icon: GraduationCap,
-    description: 'Comienzo de mi formación universitaria. Estableciendo bases fundamentales en lógica de programación, algoritmos y arquitectura de computadoras.'
-  },
-  {
-    title: 'Desarrollador Fullstack',
-    institution: 'Freelance / Proyectos',
-    date: '2024',
-    modality: '— Presencial',
-    icon: Code,
-    description: 'Consolidación en tecnologías modernas (Next.js, Node.js, Cloud). Desarrollo de aplicaciones end-to-end e integraciones de ecosistemas escalables.'
-  },
-  {
-    title: 'Automatización de Procesos',
-    institution: 'Eliggi',
-    date: '2025 - 2026',
-    modality: '— Híbrido',
-    icon: Briefcase,
-    description: 'Rediseño de flujos de trabajo y desarrollo de software B2B. Implementación de automatizaciones clave logrando una reducción del 70% en tiempos de procesos manuales.'
-  },
-  {
-    title: 'Analista en Sistemas',
-    institution: 'Título Intermedio (UTN)',
-    date: '2026',
-    modality: '— Presencial',
-    icon: BookOpen,
-    description: 'Finalización de la titulación intermedia, formalizando mis competencias analíticas, lógica de negocios y diseño de bases de datos.'
-  },
-  {
-    title: 'Ingeniería en Sistemas',
-    institution: 'Universidad Tecnológica Nacional (UTN)',
-    date: '2027',
-    modality: '— Presencial',
-    icon: GraduationCap,
-    description: 'Culminación de la carrera de grado. Foco en arquitectura de software avanzada, infraestructura cloud y dirección de proyectos tecnológicos a gran escala.'
-  }
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Education() {
+  const { t, language } = useLanguage();
+
+  const timelineData = [
+    {
+      title: t.education.start,
+      institution: t.education.academic,
+      date: '2022',
+      modality: language === 'es' ? '— Presencial' : '— On-site',
+      icon: GraduationCap,
+      description: t.education.startDesc
+    },
+    {
+      title: t.education.fullstack,
+      institution: 'Freelance / Proyectos',
+      date: '2024',
+      modality: language === 'es' ? '— Remoto' : '— Remote',
+      icon: Code,
+      description: t.education.fullstackDesc
+    },
+    {
+      title: t.education.eliggi,
+      institution: 'Eliggi',
+      date: '2025 - 2026',
+      modality: language === 'es' ? '— Híbrido' : '— Hybrid',
+      icon: Briefcase,
+      description: t.education.eliggiDesc
+    },
+    {
+      title: t.education.analyst,
+      institution: 'Título Intermedio (UTN)',
+      date: '2026',
+      modality: language === 'es' ? '— Presencial' : '— On-site',
+      icon: BookOpen,
+      description: t.education.analystDesc
+    },
+    {
+      title: t.education.academic,
+      institution: 'Universidad Tecnológica Nacional (UTN)',
+      date: '2027',
+      modality: language === 'es' ? '— Presencial' : '— On-site',
+      icon: GraduationCap,
+      description: t.education.academicDesc
+    }
+  ];
+
   return (
     <div className="w-full min-h-screen flex flex-col justify-start pt-24 pb-12 pointer-events-auto max-w-5xl mx-auto">
       <div className="mb-16 text-center">
         <h2 className="text-4xl font-semibold text-white mb-3 flex items-center justify-center gap-3 tracking-tight">
           <MapPin className="text-[#38bdf8]" />
-          Trayectoria & Idiomas
+          {t.education.title}
         </h2>
         <p className="text-white/60 max-w-2xl mx-auto text-lg font-light">
-          El hilo conductor de mi formación, experiencia profesional y evolución técnica.
+          {t.education.subtitle}
         </p>
       </div>
 
@@ -115,12 +119,14 @@ export default function Education() {
 
       {/* Idiomas en la parte inferior */}
       <div className="mt-8 border-t border-white/10 pt-12">
-        <h3 className="text-white/80 font-medium mb-8 text-xl tracking-tight text-center">Idiomas</h3>
+        <h3 className="text-white/80 font-medium mb-8 text-xl tracking-tight text-center">
+          {language === 'es' ? 'Idiomas' : 'Languages'}
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
             <div className="flex justify-between mb-3">
-              <span className="text-white/90 font-medium">Español</span>
-              <span className="text-[#38bdf8] text-sm font-medium">Nativo</span>
+              <span className="text-white/90 font-medium">{language === 'es' ? 'Español' : 'Spanish'}</span>
+              <span className="text-[#38bdf8] text-sm font-medium">{language === 'es' ? 'Nativo' : 'Native'}</span>
             </div>
             <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
               <div className="bg-[#38bdf8] h-full w-full shadow-[0_0_8px_#38bdf8]"></div>
@@ -129,13 +135,15 @@ export default function Education() {
 
           <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
             <div className="flex justify-between mb-3">
-              <span className="text-white/90 font-medium">Inglés</span>
-              <span className="text-white/50 text-sm">Técnico / Intermedio</span>
+              <span className="text-white/90 font-medium">{language === 'es' ? 'Inglés' : 'English'}</span>
+              <span className="text-white/50 text-sm">{language === 'es' ? 'Técnico / Intermedio' : 'Technical / Intermediate'}</span>
             </div>
             <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
               <div className="bg-[#38bdf8] h-full w-[60%] shadow-[0_0_8px_#38bdf8]"></div>
             </div>
-            <p className="text-xs text-white/40 mt-3 font-light leading-relaxed">Lectura de documentación y escritura de código fluida.</p>
+            <p className="text-xs text-white/40 mt-3 font-light leading-relaxed">
+              {language === 'es' ? 'Lectura de documentación y escritura de código fluida.' : 'Fluent in reading documentation and writing code.'}
+            </p>
           </div>
         </div>
       </div>

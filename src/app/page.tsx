@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Background from '@/components/ui/Background';
 import Sidebar from '@/components/ui/Sidebar';
 import HomeView from '@/components/ui/HomeView';
-import ChatAgent from '@/components/bot/ChatAgent';
+import LanguageToggle from '@/components/ui/LanguageToggle';
 import Skills from '@/components/sections/Skills';
 import Education from '@/components/sections/Education';
 import ProjectVault from '@/components/sections/ProjectVault';
@@ -20,6 +20,8 @@ export default function Home() {
 
       {/* 2. Navegación Lateral */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      <LanguageToggle />
 
       {/* 3. Contenedor de Vistas (Carga Lateral) */}
       <div className="absolute inset-0 px-6 pb-28 pt-8 md:pl-28 md:pr-12 md:py-12 flex flex-col justify-center max-w-7xl mx-auto z-10 pointer-events-none">
@@ -55,8 +57,6 @@ export default function Home() {
 
       </div>
 
-      {/* 4. Agente AI */}
-      <ChatAgent />
     </main>
   );
 }

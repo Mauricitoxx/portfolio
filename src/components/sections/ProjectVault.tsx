@@ -4,37 +4,7 @@ import { FolderGit2, ExternalLink, Code2, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import { useRef, useState } from 'react';
-
-const projectsData = [
-  {
-    title: 'Sistema de Reposición',
-    metric: 'Eliggi / ↓ 70% tiempo',
-    description: 'Sistema automatizado para análisis y generación de pedidos de stock basado en disponibilidad, precios y tiempos de entrega de proveedores.',
-    tech: ['n8n', 'Lógica de Decisión', 'APIs'],
-    github: 'https://github.com/Mauricitoxx'
-  },
-  {
-    title: 'Chatbot de Urgentes',
-    metric: 'Eliggi / ↓ 40% respuesta',
-    description: 'Agente interno de IA para equipo de ventas. Consulta disponibilidad y precios con proveedores en tiempo real cuando no hay stock interno.',
-    tech: ['n8n', 'IA Automations', 'B2B'],
-    github: 'https://github.com/Mauricitoxx'
-  },
-  {
-    title: 'Suchus Copy & Design',
-    metric: 'Ecommerce & IA',
-    description: 'Plataforma web integral de impresión y papelería. Cuenta con UI en React y un chatbot IA funcional para cotización automática y consultas de clientes.',
-    tech: ['React', 'Next.js', 'Chatbot IA'],
-    github: 'https://github.com/Mauricitoxx/Suchus-Design'
-  },
-  {
-    title: 'Jf-Tecnologías',
-    metric: 'Full-Stack Dashboard',
-    description: 'Panel administrativo robusto con edición de artículos, subida de múltiples imágenes con Cloudinary y filtrado avanzado de inventario.',
-    tech: ['React', 'Node.js', 'Cloudinary'],
-    github: 'https://jf-tecnologias.com'
-  }
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 function SpotlightCard({ children, delay }: { children: React.ReactNode, delay: number }) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -73,16 +43,49 @@ function SpotlightCard({ children, delay }: { children: React.ReactNode, delay: 
 }
 
 export default function ProjectVault() {
+  const { t } = useLanguage();
+
+  const projectsData = [
+    {
+      title: t.projects.reposicion.title,
+      metric: t.projects.reposicion.metric,
+      description: t.projects.reposicion.desc,
+      tech: ['n8n', 'Lógica de Decisión', 'APIs'],
+      github: 'https://github.com/Mauricitoxx'
+    },
+    {
+      title: t.projects.chatbot.title,
+      metric: t.projects.chatbot.metric,
+      description: t.projects.chatbot.desc,
+      tech: ['n8n', 'IA Automations', 'B2B'],
+      github: 'https://github.com/Mauricitoxx'
+    },
+    {
+      title: t.projects.suchus.title,
+      metric: t.projects.suchus.metric,
+      description: t.projects.suchus.desc,
+      tech: ['React', 'Next.js', 'Chatbot IA'],
+      github: 'https://github.com/Mauricitoxx/Suchus-Design'
+    },
+    {
+      title: t.projects.jf.title,
+      metric: t.projects.jf.metric,
+      description: t.projects.jf.desc,
+      tech: ['React', 'Node.js', 'Cloudinary'],
+      github: 'https://jf-tecnologias.com'
+    }
+  ];
+
   return (
     <div className="w-full min-h-screen flex flex-col justify-center py-24 pointer-events-auto max-w-6xl mx-auto">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h2 className="text-4xl font-semibold text-white mb-3 flex items-center gap-3 tracking-tight">
             <FolderGit2 className="text-blue-400" />
-            Project Vault
+            {t.projects.title}
           </h2>
           <p className="text-white/60 max-w-2xl text-lg font-light">
-            Una selección de proyectos donde aplico ingeniería de software para resolver problemas reales de negocio.
+            {t.projects.subtitle}
           </p>
         </div>
         <a

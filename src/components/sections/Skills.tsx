@@ -4,42 +4,46 @@ import { motion } from 'framer-motion';
 import { Layout, Server, Zap, Database, Wrench } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 const TechCloud = dynamic(() => import('../ui/TechCloud'), { ssr: false });
 
-const skillCategories = [
-  {
-    title: 'Desarrollador Frontend',
-    icon: Layout,
-    skills: ['React/Native', 'Angular', 'Next.js', 'Responsive Design', 'API Integration', 'Tailwind CSS', 'Kotlin'],
-    color: '#0a84ff' // Apple blue
-  },
-  {
-    title: 'Desarrollador Backend',
-    icon: Server,
-    skills: ['Django', 'REST APIs', 'Node.js', 'Auth Systems', 'API Design', 'FastAPI', '.NET'],
-    color: '#30d158' // Apple green
-  },
-  {
-    title: 'Automation & Integration',
-    icon: Zap,
-    skills: ['n8n', 'Workflow Automation', 'Webhooks', 'System Integration'],
-    color: '#bf5af2' // Apple purple
-  },
-  {
-    title: 'Databases',
-    icon: Database,
-    skills: ['SQLite', 'PostgreSQL', 'SQL Server', 'MongoDB', 'Database Design', 'Data Queries'],
-    color: '#ff9f0a' // Apple orange
-  },
-  {
-    title: 'Development Tools',
-    icon: Wrench,
-    skills: ['Git', 'GitHub', 'Docker', 'AWS Systems', 'Azure', 'Cloudinary', 'Office'],
-    color: '#ff375f' // Apple pink/red
-  }
-];
-
 export default function Skills() {
+  const { t } = useLanguage();
+
+  const skillCategories = [
+    {
+      title: t.stack.frontend,
+      icon: Layout,
+      skills: ['React/Native', 'Angular', 'Next.js', 'Responsive Design', 'API Integration', 'Tailwind CSS', 'Kotlin'],
+      color: '#0a84ff' // Apple blue
+    },
+    {
+      title: t.stack.backend,
+      icon: Server,
+      skills: ['Django', 'REST APIs', 'Node.js', 'Auth Systems', 'API Design', 'FastAPI', '.NET'],
+      color: '#30d158' // Apple green
+    },
+    {
+      title: t.stack.automation,
+      icon: Zap,
+      skills: ['n8n', 'Workflow Automation', 'Webhooks', 'System Integration'],
+      color: '#bf5af2' // Apple purple
+    },
+    {
+      title: t.stack.databases,
+      icon: Database,
+      skills: ['SQLite', 'PostgreSQL', 'SQL Server', 'MongoDB', 'Database Design', 'Data Queries'],
+      color: '#ff9f0a' // Apple orange
+    },
+    {
+      title: t.stack.tools,
+      icon: Wrench,
+      skills: ['Git', 'GitHub', 'Docker', 'AWS Systems', 'Azure', 'Cloudinary', 'Office'],
+      color: '#ff375f' // Apple pink/red
+    }
+  ];
+
   return (
     <div className="relative w-full h-full flex flex-col justify-center pointer-events-auto">
       <TechCloud />
@@ -48,10 +52,10 @@ export default function Skills() {
         <div className="mb-8">
           <h2 className="text-4xl font-semibold text-white mb-3 flex items-center gap-3 tracking-tight">
             <Wrench className="text-blue-400" />
-            Stack Tecnológico
+            {t.stack.title}
           </h2>
           <p className="text-white/60 max-w-2xl text-lg font-light">
-            Ecosistema de tecnologías que utilizo para construir soluciones Full-Stack robustas y automatizar procesos B2B complejos.
+            {t.stack.subtitle}
           </p>
         </div>
 

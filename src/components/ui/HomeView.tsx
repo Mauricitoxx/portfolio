@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import TerminalAbout from './TerminalAbout';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HomeView() {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -20,10 +23,10 @@ export default function HomeView() {
             transition={{ delay: 0.2 }}
           >
             <h1 className="text-5xl md:text-7xl font-semibold text-white tracking-tight">
-              Mauro Lista
+              {t.home.title}
             </h1>
             <h2 className="text-xl md:text-2xl text-blue-400 font-medium tracking-wide mt-2">
-              Systems Analyst & Fullstack Developer
+              {t.home.subtitle}
             </h2>
           </motion.div>
 
@@ -33,13 +36,12 @@ export default function HomeView() {
             transition={{ delay: 0.4 }}
             className="text-white/60 text-lg max-w-xl font-light leading-relaxed"
           >
-            Diseño y desarrollo sistemas end-to-end con foco en automatización y eficiencia.
+            {t.home.description1}
             <br />
-            Backend, frontend y workflows trabajando como uno.
-
+            {t.home.description2}
             <br />
             <br />
-            <b><b>Estudiante de Ingeniería en Sistemas (UTN)</b></b>
+            <b><b>{t.home.student}</b></b>
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +56,7 @@ export default function HomeView() {
               className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-full transition-colors flex items-center gap-2 shadow-lg shadow-blue-500/20"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
-              Descargar CV
+              {t.home.downloadCV}
             </a>
             <a 
               href="https://wa.me/542215410023"
@@ -63,7 +65,7 @@ export default function HomeView() {
               className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-full transition-colors flex items-center gap-2 border border-white/10 backdrop-blur-md"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-              Contactar
+              {t.home.contact}
             </a>
           </motion.div>
         </div>
