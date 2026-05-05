@@ -8,7 +8,7 @@ export const translations = {
     },
     home: {
       title: 'Mauro Lista',
-      subtitle: 'Systems Analyst & Fullstack Developer',
+      subtitle: 'Analista en Sistemas & Desarrollador Fullstack',
       description1: 'Diseño y desarrollo sistemas end-to-end con foco en automatización y eficiencia.',
       description2: 'Backend, frontend y workflows trabajando como uno.',
       student: 'Estudiante de Ingeniería en Sistemas (UTN)',
@@ -16,7 +16,7 @@ export const translations = {
       contact: 'Contactar'
     },
     projects: {
-      title: 'Project Vault',
+      title: 'Proyectos Destacados',
       subtitle: 'Una selección de proyectos donde aplico ingeniería de software para resolver problemas reales de negocio.',
       reposicion: {
         title: 'Sistema de Reposición',
