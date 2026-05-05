@@ -20,10 +20,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     // Try to get the language from localStorage on mount
     const savedLang = localStorage.getItem('portfolio-lang') as Language;
     if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
+      // eslint-disable-next-line
       setLanguageState(savedLang);
     } else {
       // Check browser preference
       const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
+      // eslint-disable-next-line
       setLanguageState(browserLang);
     }
   }, []);

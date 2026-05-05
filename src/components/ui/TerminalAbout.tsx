@@ -35,7 +35,7 @@ export default function TerminalAbout() {
           {">"} Systems Analyst (UTN - 2026).<br />
           {">"} Apasionado por la automatización (n8n, Docker).<br />
           {">"} Construyendo puentes entre lógica de negocio y UI/UX.<br />
-          {">"} "Transformando código en eficiencia B2B".
+          {">"} &quot;Transformando código en eficiencia B2B&quot;.
         </div>
         <div className="flex gap-2 mt-5 text-white/50 animate-pulse">
           <span>~</span>
