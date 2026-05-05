@@ -24,13 +24,13 @@ export default function Home() {
       <LanguageToggle />
 
       {/* 3. Contenedor de Vistas (Carga Lateral) */}
-      <div className="absolute inset-0 px-6 pb-28 pt-8 md:pl-28 md:pr-12 md:py-12 flex flex-col justify-center max-w-7xl mx-auto z-10 pointer-events-none">
+      <div className="absolute inset-0 px-6 pb-28 pt-24 md:pl-28 md:pr-12 md:py-12 flex flex-col justify-center max-w-7xl mx-auto z-10 pointer-events-none">
         
         {/* Usamos un div interno que acepte clicks para el contenido actual */}
-        <div className="w-full h-[85vh] relative pointer-events-auto">
+        <div className="w-full h-full md:h-[85vh] relative pointer-events-auto">
           <AnimatePresence mode="wait">
             {activeTab === 'home' && (
-              <motion.div key="home" className="absolute inset-0" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.4 }}>
+              <motion.div key="home" className="absolute inset-0 overflow-y-auto custom-scrollbar pr-4" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.4 }}>
                 <HomeView />
               </motion.div>
             )}

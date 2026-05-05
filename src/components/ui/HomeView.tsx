@@ -13,7 +13,7 @@ export default function HomeView() {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className="w-full h-full flex flex-col justify-center"
+      className="w-full min-h-full flex flex-col justify-start lg:justify-center pb-12"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6 flex flex-col gap-6">
