@@ -29,7 +29,7 @@ export default function Background() {
 
     // Propiedades de la lluvia (Estilo Apple / Glass)
     const raindrops: { x: number; y: number; length: number; speed: number; opacity: number }[] = [];
-    const dropCount = 500; // Aumentado significativamente para más robustez
+    const dropCount = 200; // Aumentado significativamente para más robustez
 
     for (let i = 0; i < dropCount; i++) {
       raindrops.push({
