@@ -123,7 +123,6 @@ export default function Hero3D() {
           saturation={0} 
           fade 
           speed={1} 
-          color={COLORS.neonAccent}
         />
 
         {/* El Planeta */}
