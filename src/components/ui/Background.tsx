@@ -1,99 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Background() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Configurar tamaño del canvas
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    };
-    window.addEventListener('resize', resize);
-
-    // Propiedades de la lluvia (Estilo Apple / Glass)
-    const raindrops: { x: number; y: number; length: number; speed: number; opacity: number }[] = [];
-    const dropCount = 66; // Reducido a un tercio
-
-    for (let i = 0; i < dropCount; i++) {
-      raindrops.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        length: Math.random() * 25 + 15,
-        speed: Math.random() * 3 + 2, // Lluvia un poco más rápida
-        opacity: Math.random() * 0.4 + 0.8, // Más visible
-      });
-    }
-
-    let animationFrameId: number;
-
-    const draw = () => {
-      // Limpiar con un fondo semi-transparente para dejar un rastro muy suave
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-      ctx.fillRect(0, 0, width, height);
-
-      // Dibujar gotas
-      for (let i = 0; i < raindrops.length; i++) {
-        const drop = raindrops[i];
-
-        // Gradiente para la gota (Apple Style: Blanco/Azul claro)
-        const gradient = ctx.createLinearGradient(drop.x, drop.y, drop.x, drop.y + drop.length);
-        gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
-        gradient.addColorStop(1, `rgba(10, 132, 255, ${drop.opacity})`); // Azul estilo iOS
-
-        ctx.beginPath();
-        ctx.moveTo(drop.x, drop.y);
-        ctx.lineTo(drop.x, drop.y + drop.length);
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.5;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        // Mover gota
-        drop.y += drop.speed;
-
-        // Reiniciar gota si sale de la pantalla
-        if (drop.y > height) {
-          drop.y = -drop.length;
-          drop.x = Math.random() * width;
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
     <div className="fixed inset-0 z-0 bg-[#000000] overflow-hidden pointer-events-none flex items-center justify-center">
-
-      {/* Canvas de Lluvia Elegante */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0 opacity-60 mix-blend-screen"
-      />
+      
+      {/* Malla sutil (Grid pattern) para textura ligera */}
+      <div className="absolute inset-0 z-0 opacity-30 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
       {/* Orbes de luz con desenfoque extremo (Glassmorphism ambient) */}
       <motion.div
