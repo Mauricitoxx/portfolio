@@ -1,41 +1,58 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowUpRight, Lock } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import type { Project } from '@/data/projects';
 
-interface ProjectCardProps {
-  title: string;
-  metric: string;
-  description: string;
-  delay?: number;
-  className?: string;
-}
+export default function ProjectCard({ project }: { project: Project }) {
+  const { t, tr } = useLanguage();
+  const typeLabel =
+    project.type === 'web' ? t.projects.typeWeb : t.projects.typeAutomation;
 
-export default function ProjectCard({ title, metric, description, delay = 0, className = '' }: ProjectCardProps) {
   return (
-    <motion.div
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      whileHover={{ scale: 1.02 }}
-      className={`bg-[#000d0d]/70 backdrop-blur-md border border-[#00ff41]/20 rounded-2xl p-6 flex flex-col justify-between overflow-hidden relative group pointer-events-auto ${className}`}
+    <Link
+      href={`/proyectos/${project.slug}`}
+      className="group flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-6 backdrop-blur-xl transition-colors hover:border-[var(--color-accent)]/50"
     >
-      {/* Resplandor verde en hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#00ff41]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      <div className="relative z-10">
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-sm text-slate-400 leading-relaxed mb-4">
-          {description}
-        </p>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <span className="rounded-full border border-[var(--color-border)] px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-wider text-[var(--color-text-mute)]">
+          {typeLabel}
+        </span>
+        <ArrowUpRight
+          size={18}
+          className="text-[var(--color-text-mute)] transition-colors group-hover:text-[var(--color-accent)]"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="relative z-10 mt-auto">
-        <div className="inline-block px-3 py-1 bg-[#00ff41]/10 border border-[#00ff41]/30 rounded-lg">
-          <span className="text-[#00ff41] font-mono font-bold text-sm">
-            {metric}
+      <h3 className="text-lg font-semibold tracking-tight text-[var(--color-text)]">
+        {tr(project.name)}
+      </h3>
+      <p className="mt-1 font-mono text-xs text-[var(--color-text-mute)]">
+        {project.context} · {tr(project.period)}
+      </p>
+
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-[var(--color-text-soft)]">
+        {tr(project.summary)}
+      </p>
+
+      <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[var(--color-border)]/70 pt-4">
+        {project.stack.slice(0, 4).map((s) => (
+          <span
+            key={s}
+            className="rounded-md bg-white/5 px-2 py-1 text-[0.7rem] text-[var(--color-text-mute)]"
+          >
+            {s}
           </span>
-        </div>
+        ))}
+        {project.internal && (
+          <span className="ml-auto flex items-center gap-1 text-[0.7rem] text-[var(--color-text-mute)]">
+            <Lock size={11} aria-hidden="true" />
+            {t.projects.internalNote}
+          </span>
+        )}
       </div>
-    </motion.div>
+    </Link>
   );
 }
